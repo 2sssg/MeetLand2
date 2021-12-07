@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>고기랜드 | 판매 품목</title>
+        <link rel="icon" type="image/x-icon" href="assets/meatland.jpg" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/m_styles.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="/m_main">고기랜드: MEAT LAND</a>  <!-- #page-top -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/m_products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/m_contact">Contact us</a></li>
+                    <li class="nav-item" th:if="${!login}"><a class="nav-link" href="/m_login">Approach as a Manager</a></li>
+                    <li class="nav-item" th:if="${login}"><a class="nav-link" href="/logout">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Header-->
+    <header class="prodhead text-center text-white">
+        <div class="prodhead-content">
+            <div class="container px-5">
+                <h1 class="prodhead-heading mb-0">PRODUCTS</h1>
+                <h2 class="prodhead-subheading mb-0" style="font-size: 1.5rem;">고기랜드 판매 품목입니다.</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content section 1-->
+    <section id="scroll">
+
+        <section th:each="meat:${meats}" style="display: none" th:id="'meatSection'+${meat.id}">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-5">
+                        <div class="p-5"><img class="img-fluid rounded-oval" src="assets/beef.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="p-5">
+                            <h3 class="display-4" style="font-size: 2rem;" th:utext="|종류 : ${meat.kind}<br>부위 : ${meat.part}|"></h3>
+                            <p th:utext = "|상세설명 : ${meat.information}<br>판매가 : ${meat.price}원|" th:id="'kindandpart'+${meat.id}"></p>
+                            <form th:action="@{/fixmeat}"  method="post" style="display: none" th:id="'meatform'+${meat.id}">
+                                <input type="hidden" name="id" th:value="${meat.id}">
+                                <input type="text" th:field="${fixMeat.information}"><br>
+                                <input type="text" th:field="${fixMeat.price}" >
+                                <button type="submit">수정 완료</button>
+                                <button type="button" th:onclick="|fixcancle($meat.id)|">취소</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <button th:if="${login}" th:onclick="|fixit(${meat.id})|" th:id="'fixstart'+${meat.id}">수정</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+        <!-- Footer-->
+        <footer class="py-5 bg-black">
+            <div class="container px-5"><p class="m-0 text-center text-white small">
+                고기랜드 / SM수입축산물컨설팅<br>
+                대표 : 이상민 &nbsp;| &nbsp;사업자등록번호 : 402-39-97356<br>
+                TEL : 053-261-0101 &nbsp;| &nbsp;FAX : 053-261-0104 &nbsp;| &nbsp;E-MAIL : porkmeat@hanmail.net<br>
+                <br>
+                Copyright &copy; Meat Land 2021 All rights reserved</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script th:inline="javascript">
+            let meats = [[${meats}]];
+                meats.forEach(function(meat){
+                    if(meat.isVisible == 1){
+                        console.log('#meatSection'+meat.kind+meat.part);
+                        $('#meatSection'+meat.id).css("display","block");
+                    }
+                })
+
+
+            function fixit(meatid){
+                console.log(meatid);
+                $('#fixstart'+meatid).css("display","none");
+                $('#kindandpart'+meatid).css("display","none");
+                $('#meatform'+meatid).css("display","block");
+            }
+
+            function fixcancle(meatid){
+                $('#fixstart'+meatid).css("display","block");
+                $('#kindandpart'+meatid).css("display","block");
+                $('#meatform'+meatid).css("display","none");
+            }
+        </script>
+    </body>
+</html>

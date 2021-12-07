@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>고기랜드 | 문의하기</title>
+        <link rel="icon" type="image/x-icon" href="assets/meatland.jpg" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/m_styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/m_main">고기랜드: MEAT LAND</a>  <!-- #page-top -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/m_products">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/m_contact">Contact us</a></li>
+                        <li class="nav-item" th:if="${!login}"><a class="nav-link" href="/m_login">Approach as a Manager</a></li>
+                        <li class="nav-item" th:if="${login}"><a class="nav-link" href="/logout">logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header-->
+        <header class="prodhead text-center text-white">
+            <div class="prodhead-content">
+                <div class="container px-5">
+                    <h1 class="prodhead-heading mb-0">Contact us</h1>
+                    <h2 class="prodhead-subheading mb-0" style="font-size: 1.5rem;">궁금한 사항은 언제든지 문의해주세요.</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content section 1
+        <section id="scroll">
+        <section>
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                    <div class="col-lg-5">
+                        <div class="p-5"><img class="img-fluid rounded-oval" src="assets/beef.jpg" alt="..." /></div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="p-5">
+                            <h3 class="display-4" style="font-size: 2rem;">고기 종류 및 부위</h3>
+                            <p>
+                                상세설명<br>
+                                판매가
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>-->
+        
+
+
+
+
+        <div class="form-group has-feedback">
+            <p>[ 문의하기 ]<br></p>
+            <label class="col-sm-2 control-label" for="wr_name">1. 성함 혹은 업체명<strong class="sound_only"> (필수)</strong></label>
+            <div class="col-sm-10">
+                <input type="text" name="wr_name" value="" id="wr_name" required class="form-control input-sm" size="10" maxlength="20" placeholder="회사명/업체명">
+            </div>
+        
+        
+            <label class="col-sm-2 control-label" for="wr_4">2. 연락처(전화번호)<strong class="sound_only"> (필수)</strong></label>
+            <div class="col-sm-10">
+                <input type="text" name="wr_4" id="wr_4" class="form-control input-sm" maxlength="20" placeholder="'-'를 제외하고 입력">
+            </div>
+        
+            <label class="col-sm-2 control-label" for="wr_email">3. 이메일</label>
+            <div class="col-sm-10">
+                <input type="text" name="wr_email" id="wr_email" value="" class="form-control input-sm email" size="50" maxlength="100" placeholder="정확한 이메일을 적어주세요.">
+            </div>
+        
+        
+            <label class="col-sm-2 control-label" for="wr_subject"><br>4. 제목<strong class="sound_only"> (필수)</strong></label>
+            <div class="col-sm-10">
+                <div class="input-group" style="width:100%;">
+                    <input type="text" name="wr_subject" value="" id="wr_subject" required class="form-control input-sm" size="50" maxlength="255">
+                </div>
+            </div>
+        
+        
+        
+                    <script>
+                    $(function(){
+                        $("#wr_content").html("문의하실 내용을 상세히 입력해주시면 답변에 도움이 됩니다.");
+                    });
+                </script>
+                <label class="col-sm-2 control-label" for="wr_2">5. 상세 내용<strong class="sound_only"> (필수)</strong></label>
+            <div class="col-sm-10">
+                        <span class="sound_only"> </span>
+        <textarea id="wr_content" name="wr_content" class="" maxlength="65536" style="width:100%;height:300px"></textarea>
+        <span class="sound_only"> </span>	</div>
+        </div>
+
+
+
+
+
+
+        <!-- Footer-->
+        <footer class="py-5 bg-black">
+            <div class="container px-5"><p class="m-0 text-center text-white small">
+                고기랜드 / SM수입축산물컨설팅<br>
+                대표 : 이상민 &nbsp;| &nbsp;사업자등록번호 : 402-39-97356<br>
+                TEL : 053-261-0101 &nbsp;| &nbsp;FAX : 053-261-0104 &nbsp;| &nbsp;E-MAIL : porkmeat@hanmail.net<br>
+                <br>
+                Copyright &copy; Meat Land 2021 All rights reserved</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
